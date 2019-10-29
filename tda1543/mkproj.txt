@@ -1,0 +1,8 @@
+[project]
+mcu=atmega328p
+f_cpu=16000000
+[MkVersion]
+BuildVersion=1.0.0
+BuildNumber=31
+BuildTime=20:40:41
+BuildDate=27.05.2019
