@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+tda1543/mkproj.txt
+tda1543/Release/main.o
+tda1543/Release/tda1543.bin
+tda1543/Release/tda1543.elf
+tda1543/Release/tda1543.hex
+tda1543/Release/tda1543.lss
+tda1543/Release/tda1543.map

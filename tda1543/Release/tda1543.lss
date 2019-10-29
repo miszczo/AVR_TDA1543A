@@ -3,23 +3,23 @@ Release/tda1543.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000200  00800100  000001cc  00000260  2**0
+  0 .data         00000200  00800100  000001d6  0000026a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000001cc  00000000  00000000  00000094  2**1
+  1 .text         000001d6  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000001  00800300  00800300  00000460  2**0
+  2 .bss          00000001  00800300  00800300  0000046a  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000460  2**0
+  3 .comment      00000030  00000000  00000000  0000046a  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000490  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000049c  2**2
                   CONTENTS, READONLY
-  5 .debug_info   000005f4  00000000  00000000  000004d0  2**0
+  5 .debug_info   000005f4  00000000  00000000  000004dc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000005a2  00000000  00000000  00000ac4  2**0
+  6 .debug_abbrev 000005a2  00000000  00000000  00000ad0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000001a  00000000  00000000  00001066  2**0
+  7 .debug_line   0000001a  00000000  00000000  00001072  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    00000208  00000000  00000000  00001080  2**0
+  8 .debug_str    00000208  00000000  00000000  0000108c  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -36,7 +36,7 @@ Disassembly of section .text:
   20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  2c:	0c 94 69 00 	jmp	0xd2	; 0xd2 <__vector_11>
+  2c:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__vector_11>
   30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
@@ -64,7 +64,7 @@ Disassembly of section .text:
   74:	13 e0       	ldi	r17, 0x03	; 3
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	ec ec       	ldi	r30, 0xCC	; 204
+  7a:	e6 ed       	ldi	r30, 0xD6	; 214
   7c:	f1 e0       	ldi	r31, 0x01	; 1
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
@@ -86,8 +86,8 @@ Disassembly of section .text:
   94:	a1 30       	cpi	r26, 0x01	; 1
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
-  9a:	0e 94 d9 00 	call	0x1b2	; 0x1b2 <main>
-  9e:	0c 94 e4 00 	jmp	0x1c8	; 0x1c8 <_exit>
+  9a:	0e 94 dd 00 	call	0x1ba	; 0x1ba <main>
+  9e:	0c 94 e9 00 	jmp	0x1d2	; 0x1d2 <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -96,145 +96,148 @@ Disassembly of section .text:
   a6:	40 9a       	sbi	0x08, 0	; 8
   a8:	00 00       	nop
   aa:	00 00       	nop
-  ac:	88 b1       	in	r24, 0x08	; 8
-  ae:	18 b8       	out	0x08, r1	; 8
-  b0:	08 95       	ret
+  ac:	40 98       	cbi	0x08, 0	; 8
+  ae:	08 95       	ret
 
-000000b2 <init_timer1>:
-  b2:	88 e0       	ldi	r24, 0x08	; 8
-  b4:	80 93 80 00 	sts	0x0080, r24
-  b8:	89 e6       	ldi	r24, 0x69	; 105
-  ba:	80 93 89 00 	sts	0x0089, r24
-  be:	88 e1       	ldi	r24, 0x18	; 24
-  c0:	80 93 88 00 	sts	0x0088, r24
-  c4:	81 e0       	ldi	r24, 0x01	; 1
-  c6:	80 93 81 00 	sts	0x0081, r24
-  ca:	82 e0       	ldi	r24, 0x02	; 2
-  cc:	80 93 6f 00 	sts	0x006F, r24
-  d0:	08 95       	ret
+000000b0 <init_timer1>:
+  b0:	88 e0       	ldi	r24, 0x08	; 8
+  b2:	80 93 80 00 	sts	0x0080, r24
+  b6:	89 e6       	ldi	r24, 0x69	; 105
+  b8:	80 93 89 00 	sts	0x0089, r24
+  bc:	88 e1       	ldi	r24, 0x18	; 24
+  be:	80 93 88 00 	sts	0x0088, r24
+  c2:	81 e0       	ldi	r24, 0x01	; 1
+  c4:	80 93 81 00 	sts	0x0081, r24
+  c8:	82 e0       	ldi	r24, 0x02	; 2
+  ca:	80 93 6f 00 	sts	0x006F, r24
+  ce:	08 95       	ret
 
-000000d2 <__vector_11>:
-  d2:	1f 92       	push	r1
-  d4:	0f 92       	push	r0
-  d6:	0f b6       	in	r0, 0x3f	; 63
-  d8:	0f 92       	push	r0
-  da:	11 24       	eor	r1, r1
-  dc:	0f 93       	push	r16
-  de:	1f 93       	push	r17
-  e0:	2f 93       	push	r18
-  e2:	3f 93       	push	r19
-  e4:	4f 93       	push	r20
-  e6:	5f 93       	push	r21
-  e8:	6f 93       	push	r22
-  ea:	7f 93       	push	r23
-  ec:	8f 93       	push	r24
-  ee:	9f 93       	push	r25
-  f0:	af 93       	push	r26
-  f2:	bf 93       	push	r27
-  f4:	cf 93       	push	r28
-  f6:	df 93       	push	r29
-  f8:	ef 93       	push	r30
-  fa:	ff 93       	push	r31
-  fc:	95 b1       	in	r25, 0x05	; 5
-  fe:	80 e2       	ldi	r24, 0x20	; 32
- 100:	89 27       	eor	r24, r25
- 102:	85 b9       	out	0x05, r24	; 5
- 104:	41 9a       	sbi	0x08, 1	; 8
- 106:	88 b1       	in	r24, 0x08	; 8
- 108:	18 b8       	out	0x08, r1	; 8
- 10a:	c0 e1       	ldi	r28, 0x10	; 16
- 10c:	d0 e0       	ldi	r29, 0x00	; 0
- 10e:	00 e0       	ldi	r16, 0x00	; 0
- 110:	10 e8       	ldi	r17, 0x80	; 128
- 112:	e0 91 00 03 	lds	r30, 0x0300
- 116:	f0 e0       	ldi	r31, 0x00	; 0
- 118:	ee 0f       	add	r30, r30
- 11a:	ff 1f       	adc	r31, r31
- 11c:	e0 50       	subi	r30, 0x00	; 0
- 11e:	ff 4f       	sbci	r31, 0xFF	; 255
- 120:	80 81       	ld	r24, Z
- 122:	91 81       	ldd	r25, Z+1	; 0x01
- 124:	80 23       	and	r24, r16
- 126:	91 23       	and	r25, r17
- 128:	89 2b       	or	r24, r25
- 12a:	19 f4       	brne	.+6      	; 0x132 <__vector_11+0x60>
- 12c:	88 b1       	in	r24, 0x08	; 8
- 12e:	18 b8       	out	0x08, r1	; 8
- 130:	01 c0       	rjmp	.+2      	; 0x134 <__vector_11+0x62>
- 132:	42 9a       	sbi	0x08, 2	; 8
- 134:	0e 94 53 00 	call	0xa6	; 0xa6 <tda1543_clk>
- 138:	16 95       	lsr	r17
- 13a:	07 95       	ror	r16
- 13c:	21 97       	sbiw	r28, 0x01	; 1
- 13e:	49 f7       	brne	.-46     	; 0x112 <__vector_11+0x40>
- 140:	88 b1       	in	r24, 0x08	; 8
- 142:	18 b8       	out	0x08, r1	; 8
- 144:	88 b1       	in	r24, 0x08	; 8
- 146:	18 b8       	out	0x08, r1	; 8
- 148:	c0 e1       	ldi	r28, 0x10	; 16
- 14a:	d0 e0       	ldi	r29, 0x00	; 0
- 14c:	00 e0       	ldi	r16, 0x00	; 0
- 14e:	10 e8       	ldi	r17, 0x80	; 128
- 150:	e0 91 00 03 	lds	r30, 0x0300
- 154:	f0 e0       	ldi	r31, 0x00	; 0
- 156:	ee 0f       	add	r30, r30
- 158:	ff 1f       	adc	r31, r31
- 15a:	e0 50       	subi	r30, 0x00	; 0
- 15c:	ff 4f       	sbci	r31, 0xFF	; 255
- 15e:	80 81       	ld	r24, Z
- 160:	91 81       	ldd	r25, Z+1	; 0x01
- 162:	80 23       	and	r24, r16
- 164:	91 23       	and	r25, r17
- 166:	89 2b       	or	r24, r25
- 168:	19 f4       	brne	.+6      	; 0x170 <__vector_11+0x9e>
- 16a:	88 b1       	in	r24, 0x08	; 8
- 16c:	18 b8       	out	0x08, r1	; 8
- 16e:	01 c0       	rjmp	.+2      	; 0x172 <__vector_11+0xa0>
- 170:	42 9a       	sbi	0x08, 2	; 8
- 172:	0e 94 53 00 	call	0xa6	; 0xa6 <tda1543_clk>
- 176:	16 95       	lsr	r17
- 178:	07 95       	ror	r16
- 17a:	21 97       	sbiw	r28, 0x01	; 1
- 17c:	49 f7       	brne	.-46     	; 0x150 <__vector_11+0x7e>
- 17e:	80 91 00 03 	lds	r24, 0x0300
- 182:	8f 5f       	subi	r24, 0xFF	; 255
- 184:	80 93 00 03 	sts	0x0300, r24
- 188:	ff 91       	pop	r31
- 18a:	ef 91       	pop	r30
- 18c:	df 91       	pop	r29
- 18e:	cf 91       	pop	r28
- 190:	bf 91       	pop	r27
- 192:	af 91       	pop	r26
- 194:	9f 91       	pop	r25
- 196:	8f 91       	pop	r24
- 198:	7f 91       	pop	r23
- 19a:	6f 91       	pop	r22
- 19c:	5f 91       	pop	r21
- 19e:	4f 91       	pop	r20
- 1a0:	3f 91       	pop	r19
- 1a2:	2f 91       	pop	r18
- 1a4:	1f 91       	pop	r17
- 1a6:	0f 91       	pop	r16
- 1a8:	0f 90       	pop	r0
- 1aa:	0f be       	out	0x3f, r0	; 63
- 1ac:	0f 90       	pop	r0
- 1ae:	1f 90       	pop	r1
- 1b0:	18 95       	reti
+000000d0 <__vector_11>:
+  d0:	1f 92       	push	r1
+  d2:	0f 92       	push	r0
+  d4:	0f b6       	in	r0, 0x3f	; 63
+  d6:	0f 92       	push	r0
+  d8:	11 24       	eor	r1, r1
+  da:	0f 93       	push	r16
+  dc:	1f 93       	push	r17
+  de:	2f 93       	push	r18
+  e0:	3f 93       	push	r19
+  e2:	4f 93       	push	r20
+  e4:	5f 93       	push	r21
+  e6:	6f 93       	push	r22
+  e8:	7f 93       	push	r23
+  ea:	8f 93       	push	r24
+  ec:	9f 93       	push	r25
+  ee:	af 93       	push	r26
+  f0:	bf 93       	push	r27
+  f2:	cf 93       	push	r28
+  f4:	df 93       	push	r29
+  f6:	ef 93       	push	r30
+  f8:	ff 93       	push	r31
+  fa:	95 b1       	in	r25, 0x05	; 5
+  fc:	80 e2       	ldi	r24, 0x20	; 32
+  fe:	89 27       	eor	r24, r25
+ 100:	85 b9       	out	0x05, r24	; 5
+ 102:	41 9a       	sbi	0x08, 1	; 8
+ 104:	42 98       	cbi	0x08, 2	; 8
+ 106:	c8 e0       	ldi	r28, 0x08	; 8
+ 108:	0e 94 53 00 	call	0xa6	; 0xa6 <tda1543_clk>
+ 10c:	c1 50       	subi	r28, 0x01	; 1
+ 10e:	e1 f7       	brne	.-8      	; 0x108 <__vector_11+0x38>
+ 110:	c0 e1       	ldi	r28, 0x10	; 16
+ 112:	d0 e0       	ldi	r29, 0x00	; 0
+ 114:	00 e0       	ldi	r16, 0x00	; 0
+ 116:	10 e8       	ldi	r17, 0x80	; 128
+ 118:	e0 91 00 03 	lds	r30, 0x0300
+ 11c:	f0 e0       	ldi	r31, 0x00	; 0
+ 11e:	ee 0f       	add	r30, r30
+ 120:	ff 1f       	adc	r31, r31
+ 122:	e0 50       	subi	r30, 0x00	; 0
+ 124:	ff 4f       	sbci	r31, 0xFF	; 255
+ 126:	80 81       	ld	r24, Z
+ 128:	91 81       	ldd	r25, Z+1	; 0x01
+ 12a:	80 23       	and	r24, r16
+ 12c:	91 23       	and	r25, r17
+ 12e:	89 2b       	or	r24, r25
+ 130:	11 f4       	brne	.+4      	; 0x136 <__vector_11+0x66>
+ 132:	42 98       	cbi	0x08, 2	; 8
+ 134:	01 c0       	rjmp	.+2      	; 0x138 <__vector_11+0x68>
+ 136:	42 9a       	sbi	0x08, 2	; 8
+ 138:	0e 94 53 00 	call	0xa6	; 0xa6 <tda1543_clk>
+ 13c:	16 95       	lsr	r17
+ 13e:	07 95       	ror	r16
+ 140:	21 97       	sbiw	r28, 0x01	; 1
+ 142:	51 f7       	brne	.-44     	; 0x118 <__vector_11+0x48>
+ 144:	41 98       	cbi	0x08, 1	; 8
+ 146:	42 98       	cbi	0x08, 2	; 8
+ 148:	c8 e0       	ldi	r28, 0x08	; 8
+ 14a:	0e 94 53 00 	call	0xa6	; 0xa6 <tda1543_clk>
+ 14e:	c1 50       	subi	r28, 0x01	; 1
+ 150:	e1 f7       	brne	.-8      	; 0x14a <__vector_11+0x7a>
+ 152:	c0 e1       	ldi	r28, 0x10	; 16
+ 154:	d0 e0       	ldi	r29, 0x00	; 0
+ 156:	00 e0       	ldi	r16, 0x00	; 0
+ 158:	10 e8       	ldi	r17, 0x80	; 128
+ 15a:	e0 91 00 03 	lds	r30, 0x0300
+ 15e:	f0 e0       	ldi	r31, 0x00	; 0
+ 160:	ee 0f       	add	r30, r30
+ 162:	ff 1f       	adc	r31, r31
+ 164:	e0 50       	subi	r30, 0x00	; 0
+ 166:	ff 4f       	sbci	r31, 0xFF	; 255
+ 168:	80 81       	ld	r24, Z
+ 16a:	91 81       	ldd	r25, Z+1	; 0x01
+ 16c:	80 23       	and	r24, r16
+ 16e:	91 23       	and	r25, r17
+ 170:	89 2b       	or	r24, r25
+ 172:	11 f4       	brne	.+4      	; 0x178 <__vector_11+0xa8>
+ 174:	42 98       	cbi	0x08, 2	; 8
+ 176:	01 c0       	rjmp	.+2      	; 0x17a <__vector_11+0xaa>
+ 178:	42 9a       	sbi	0x08, 2	; 8
+ 17a:	0e 94 53 00 	call	0xa6	; 0xa6 <tda1543_clk>
+ 17e:	16 95       	lsr	r17
+ 180:	07 95       	ror	r16
+ 182:	21 97       	sbiw	r28, 0x01	; 1
+ 184:	51 f7       	brne	.-44     	; 0x15a <__vector_11+0x8a>
+ 186:	80 91 00 03 	lds	r24, 0x0300
+ 18a:	8f 5f       	subi	r24, 0xFF	; 255
+ 18c:	80 93 00 03 	sts	0x0300, r24
+ 190:	ff 91       	pop	r31
+ 192:	ef 91       	pop	r30
+ 194:	df 91       	pop	r29
+ 196:	cf 91       	pop	r28
+ 198:	bf 91       	pop	r27
+ 19a:	af 91       	pop	r26
+ 19c:	9f 91       	pop	r25
+ 19e:	8f 91       	pop	r24
+ 1a0:	7f 91       	pop	r23
+ 1a2:	6f 91       	pop	r22
+ 1a4:	5f 91       	pop	r21
+ 1a6:	4f 91       	pop	r20
+ 1a8:	3f 91       	pop	r19
+ 1aa:	2f 91       	pop	r18
+ 1ac:	1f 91       	pop	r17
+ 1ae:	0f 91       	pop	r16
+ 1b0:	0f 90       	pop	r0
+ 1b2:	0f be       	out	0x3f, r0	; 63
+ 1b4:	0f 90       	pop	r0
+ 1b6:	1f 90       	pop	r1
+ 1b8:	18 95       	reti
 
-000001b2 <main>:
- 1b2:	80 e2       	ldi	r24, 0x20	; 32
- 1b4:	84 b9       	out	0x04, r24	; 4
- 1b6:	0e 94 59 00 	call	0xb2	; 0xb2 <init_timer1>
- 1ba:	88 b1       	in	r24, 0x08	; 8
- 1bc:	18 b8       	out	0x08, r1	; 8
- 1be:	87 b1       	in	r24, 0x07	; 7
- 1c0:	87 60       	ori	r24, 0x07	; 7
- 1c2:	87 b9       	out	0x07, r24	; 7
- 1c4:	78 94       	sei
- 1c6:	ff cf       	rjmp	.-2      	; 0x1c6 <main+0x14>
+000001ba <main>:
+ 1ba:	80 e2       	ldi	r24, 0x20	; 32
+ 1bc:	84 b9       	out	0x04, r24	; 4
+ 1be:	0e 94 58 00 	call	0xb0	; 0xb0 <init_timer1>
+ 1c2:	88 b1       	in	r24, 0x08	; 8
+ 1c4:	88 7f       	andi	r24, 0xF8	; 248
+ 1c6:	88 b9       	out	0x08, r24	; 8
+ 1c8:	87 b1       	in	r24, 0x07	; 7
+ 1ca:	87 60       	ori	r24, 0x07	; 7
+ 1cc:	87 b9       	out	0x07, r24	; 7
+ 1ce:	78 94       	sei
+ 1d0:	ff cf       	rjmp	.-2      	; 0x1d0 <main+0x16>
 
-000001c8 <_exit>:
- 1c8:	f8 94       	cli
+000001d2 <_exit>:
+ 1d2:	f8 94       	cli
 
-000001ca <__stop_program>:
- 1ca:	ff cf       	rjmp	.-2      	; 0x1ca <__stop_program>
+000001d4 <__stop_program>:
+ 1d4:	ff cf       	rjmp	.-2      	; 0x1d4 <__stop_program>

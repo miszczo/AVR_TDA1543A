@@ -182,7 +182,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x1cc
+.text           0x00000000      0x1d6
  *(.vectors)
  .vectors       0x00000000       0x68 c:/users/miszczo/documents/mkclipse/avr toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -267,21 +267,21 @@ END GROUP
                 0x000000a6                . = ALIGN (0x2)
  *(.text.*)
  .text.tda1543_clk
-                0x000000a6        0xc Release/main.o
+                0x000000a6        0xa Release/main.o
  .text.init_timer1
-                0x000000b2       0x20 Release/main.o
-                0x000000b2                init_timer1
+                0x000000b0       0x20 Release/main.o
+                0x000000b0                init_timer1
  .text.__vector_11
-                0x000000d2       0xe0 Release/main.o
-                0x000000d2                __vector_11
+                0x000000d0       0xea Release/main.o
+                0x000000d0                __vector_11
  .text.startup.main
-                0x000001b2       0x16 Release/main.o
-                0x000001b2                main
-                0x000001c8                . = ALIGN (0x2)
+                0x000001ba       0x18 Release/main.o
+                0x000001ba                main
+                0x000001d2                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000001c8        0x0 c:/users/miszczo/documents/mkclipse/avr toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000001c8                _exit
-                0x000001c8                exit
+ .fini9         0x000001d2        0x0 c:/users/miszczo/documents/mkclipse/avr toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x000001d2                _exit
+                0x000001d2                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -300,11 +300,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000001c8        0x4 c:/users/miszczo/documents/mkclipse/avr toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x000001d2        0x4 c:/users/miszczo/documents/mkclipse/avr toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000001cc                _etext = .
+                0x000001d6                _etext = .
 
-.data           0x00800100      0x200 load address 0x000001cc
+.data           0x00800100      0x200 load address 0x000001d6
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -325,8 +325,8 @@ END GROUP
  COMMON         0x00800300        0x1 Release/main.o
                 0x00800300                probe_idx
                 0x00800301                PROVIDE (__bss_end, .)
-                0x000001cc                __data_load_start = LOADADDR (.data)
-                0x000003cc                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000001d6                __data_load_start = LOADADDR (.data)
+                0x000003d6                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800301        0x0
                 0x00800301                PROVIDE (__noinit_start, .)
