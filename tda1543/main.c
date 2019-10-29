@@ -53,7 +53,7 @@ uint16_t sin_tab[256] = {
     30357, 31160, 31963};
 
 void static inline tda1543_init(void) {
-  PORTC &= !((1 << PC0) | (1 << PC1) | (1 << PC2));
+  PORTC &= ~((1 << PC0) | (1 << PC1) | (1 << PC2));
   DDRC |= (1 << PC0) | (1 << PC1) | (1 << PC2);
 }
 
